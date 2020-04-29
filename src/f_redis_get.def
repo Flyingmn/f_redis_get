@@ -1,0 +1,1 @@
+string f_redis_get(string host, int port, string database, string key)
