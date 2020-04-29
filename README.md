@@ -2,6 +2,9 @@
 
 redis: get test 
 
+## 依赖
+[hiredis](https://github.com/redis/hiredis)
+
 ## 初始化
 
 ### 进入PHP7源码ext
@@ -13,7 +16,9 @@ cd ext
 
 cd f_redis_get  
 vim config.m4
-#### 去掉 PHP_ARG_WITH 和 [  --with-f_redis_get 前面的dnl
+#### 去掉 PHP_ARG_WITH 和 [  --with-f_redis_get 前面的dnl 添加如下内容
+PHP_ADD_LIBRARY_WITH_PATH(hiredis, /usr/local/lib/, F_REDIS_GET_SHARED_LIBADD)  
+PHP_SUBST(F_REDIS_GET_SHARED_LIBADD)  
 
 ## 功能实现
 
