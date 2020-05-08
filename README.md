@@ -24,7 +24,7 @@ cd f_redis_get
 vim config.m4
 ```
 去掉 PHP_ARG_WITH 和 [  --with-f_redis_get 前面的dnl 在文件底部添加下面两行，内容如src/config.m4
-```C
+```m4
 PHP_ADD_LIBRARY_WITH_PATH(hiredis, /usr/local/lib/, F_REDIS_GET_SHARED_LIBADD)  
 PHP_SUBST(F_REDIS_GET_SHARED_LIBADD)  
 ```
