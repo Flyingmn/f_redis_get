@@ -28,9 +28,11 @@
 #include "php_f_redis_get.h"
 
 #include <hiredis/hiredis.h>
+#include <string.h>
 
 
 #define CMD_MAX_LENGHT  256
+#define RES_MAX_LENGHT  40
 
 /* If you declare any globals in php_f_redis_get.h uncomment this:
 ZEND_DECLARE_MODULE_GLOBALS(f_redis_get)
@@ -85,6 +87,7 @@ PHP_FUNCTION(f_redis_get)
 	char *database = NULL;
 	char *key = NULL;
 	char cmd[CMD_MAX_LENGHT] = {0};
+	char ret_str[RES_MAX_LENGHT];
 
 	int argc = ZEND_NUM_ARGS();
 	zend_long port;
@@ -141,9 +144,11 @@ PHP_FUNCTION(f_redis_get)
         RETURN_FALSE;
 	}
 
-    RETURN_STRING(reply->str);
+    strcpy(ret_str, reply->str);
 	freeReplyObject(reply);
     redisFree(context);
+
+    RETURN_STRING(ret_str);
 }
 /* }}} */
 
